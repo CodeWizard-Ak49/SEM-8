@@ -1,0 +1,62 @@
+1. Objective
+
+To design and implement Parallel Depth First Search (DFS) using OpenMP for traversing a tree or an undirected graph efficiently using parallel processing.
+
+2. Theory
+
+Depth First Search (DFS) is a graph traversal algorithm that explores nodes deeply before backtracking.
+
+It works as:
+Visit a node
+Move to one unvisited adjacent node
+Continue deeply until no node remains
+Backtrack and continue traversal
+
+DFS uses:
+Stack
+or
+Recursion
+
+In Parallel DFS, multiple adjacent nodes can be explored simultaneously using OpenMP threads.
+
+
+3. Parallel DFS using OpenMP
+
+In parallel DFS:
+Different branches of graph are explored simultaneously.
+OpenMP creates multiple threads.
+Threads process neighboring nodes together.
+
+This improves execution speed for large graphs.
+
+4. Algorithm
+Algorithm for Parallel DFS
+Start from source node.
+Mark node as visited.
+Print current node.
+Visit all adjacent unvisited nodes in parallel.
+Recursively repeat DFS for each node.
+Stop when all nodes are visited.
+
+5. Pseudocode
+Parallel_DFS(Graph, node)
+
+1. Mark node as visited
+2. Print node
+
+3. Parallel for each neighbor v of node
+
+4.     If v is not visited
+
+5.         Parallel_DFS(Graph, v)
+
+6. End
+
+
+Applications:
+Path finding
+Artificial Intelligence
+Maze solving
+Network analysis
+Cycle detection
+Web crawling
