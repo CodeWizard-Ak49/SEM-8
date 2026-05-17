@@ -1,0 +1,147 @@
+1. Objective
+
+To write and implement a CUDA C program for matrix multiplication using GPU parallel processing.
+
+2. Theory
+Matrix Multiplication
+Matrix multiplication is performed by multiplying rows of the first matrix with columns of the second matrix.
+
+Suppose:
+A
+m×n​
+    × B
+       n×p
+          =C
+            m×p
+	​
+
+
+Formula:
+
+C[i][j]=∑A[i][k]×B[k][j]
+
+Example
+
+Matrix A:
+
+1 2
+3 4
+
+Matrix B:
+
+5 6
+7 8
+
+Result Matrix C:
+
+19 22
+43 50
+
+CUDA
+
+CUDA is a parallel computing platform developed by NVIDIA.
+
+CUDA allows computations to run on GPU using thousands of threads simultaneously.
+
+
+Parallel Matrix Multiplication
+
+In CUDA:
+Each thread computes one element of result matrix.
+Multiple elements are computed simultaneously.
+
+This greatly improves performance for large matrices.
+
+
+
+CUDA Components
+Component	Purpose
+Host	CPU
+Device	GPU
+Kernel	Function executed on GPU
+Thread	Computes one matrix element
+CUDA Kernel
+
+
+Kernel syntax:
+__global__ void matrixMul(...)
+
+
+3. Algorithm
+Algorithm for Matrix Multiplication using CUDA
+Start
+Initialize matrices A and B
+Allocate memory on GPU
+Copy matrices from CPU to GPU
+Launch CUDA kernel
+Each thread calculates one element of matrix C
+Copy result matrix back to CPU
+Display output
+Free memory
+Stop
+
+
+4. Pseudocode
+MatrixMultiplication(A, B, C)
+
+1. Allocate GPU memory
+
+2. Copy A and B to GPU
+
+3. Launch parallel threads
+
+4. For each thread (i, j)
+
+5.     C[i][j] = 0
+
+6.     For k = 0 to n-1
+
+7.         C[i][j] += A[i][k] * B[k][j]
+
+8. Copy C back to CPU
+
+9. Print result
+
+
+5. Working Example
+
+Input:
+
+Matrix A
+
+1 2
+3 4
+
+Matrix B
+
+5 6
+7 8
+
+Calculation:
+
+C[0][0]=(1×5)+(2×7)=19
+C[0][1]=(1×6)+(2×8)=22
+
+Output:
+
+19 22
+43 50
+
+
+6. Advantages
+Faster computation
+Efficient for large matrices
+Uses GPU parallelism
+Better performance than CPU for large data
+
+7. Disadvantages
+Requires CUDA-supported GPU
+Complex memory handling
+Overhead for small matrices
+
+8. Applications
+Image Processing
+Scientific Computing
+Machine Learning
+Artificial Intelligence
+High Performance Computing (HPC)

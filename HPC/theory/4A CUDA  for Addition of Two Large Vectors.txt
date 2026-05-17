@@ -1,0 +1,110 @@
+1. Objective
+
+To write and implement a CUDA program for addition of two large vectors using GPU parallel processing.
+
+2. Theory
+Vector Addition
+Vector addition means adding corresponding elements of two vectors.
+
+Example:
+A = [1 2 3]
+B = [4 5 6]
+
+C = [5 7 9]
+
+Formula:
+
+C[i]=A[i]+B[i]
+
+CUDA
+CUDA (Compute Unified Device Architecture) is a parallel computing platform developed by NVIDIA.
+
+CUDA allows programs to run on the GPU for faster computation.
+
+GPU Parallelism
+In CUDA:
+Multiple threads run simultaneously.
+Each thread handles one vector element.
+
+For vector addition:
+Thread 0 adds first elements
+Thread 1 adds second elements
+and so on.
+
+This makes execution very fast for large vectors.
+
+CUDA Components
+Component	Purpose
+Host	CPU memory
+Device	GPU memory
+Kernel	Function executed on GPU
+Thread	Smallest execution unit
+
+
+CUDA Kernel
+Kernel is a special GPU function.
+
+Syntax:
+__global__ void vectorAdd(...)
+
+
+3. Algorithm
+Algorithm for Vector Addition using CUDA
+Start
+Initialize vectors A and B
+Allocate memory on GPU
+Copy vectors from CPU to GPU
+Launch CUDA kernel
+Each thread adds one element
+Store result in vector C
+Copy result back to CPU
+Display output
+Free memory
+Stop
+
+
+4. Pseudocode
+VectorAddition(A, B, C, n)
+
+1. Allocate GPU memory
+
+2. Copy A and B to GPU
+
+3. Launch parallel threads
+
+4. For each thread i
+
+5.     C[i] = A[i] + B[i]
+
+6. Copy C back to CPU
+
+7. Print result
+
+
+5. Working Example
+
+Input:
+A = [1 2 3 4]
+B = [5 6 7 8]
+
+Output:
+C = [6 8 10 12]
+
+
+6. Advantages
+Faster computation
+Efficient for large vectors
+Uses GPU parallelism
+Better performance than CPU for large data
+
+7. Disadvantages
+Requires CUDA-supported GPU
+Complex memory management
+Overhead for small datasets
+
+8. Applications
+Scientific Computing
+Image Processing
+Machine Learning
+Data Analysis
+High Performance Computing (HPC)
