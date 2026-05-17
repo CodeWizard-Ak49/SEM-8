@@ -1,0 +1,62 @@
+1. Objective
+
+To design and implement Parallel Breadth First Search (BFS) using OpenMP for traversing a tree or an undirected graph efficiently by visiting multiple nodes simultaneously.
+
+2. Theory
+
+Breadth First Search (BFS) is a graph traversal algorithm that visits nodes level by level.
+First, it visits the starting node.
+Then all adjacent nodes.
+Then neighbors of those nodes, and so on.
+
+BFS uses a queue data structure.
+
+Applications of BFS:
+Social network analysis
+Web crawling
+GPS shortest path
+Network broadcasting
+
+Why Parallel BFS?
+Normal BFS works sequentially and becomes slow for large graphs.
+
+Parallel BFS:
+
+Reduces execution time
+Uses multiple CPU cores
+Processes many nodes together
+
+3. Algorithm
+Algorithm for Parallel BFS
+Start from the source node.
+Mark source node as visited.
+Insert source node into queue.
+Repeat until queue becomes empty:
+  Remove a node from queue.
+  Visit all adjacent nodes in parallel.
+  If adjacent node is not visited:
+    Mark it visited.
+    Insert into queue.
+End.
+
+
+Pseudocode
+Parallel_BFS(Graph, source)
+
+1. Create queue Q
+2. Mark source as visited
+3. Enqueue source into Q
+
+4. While Q is not empty
+
+5.     Dequeue node u from Q
+6.     Print u
+
+7.     Parallel for each neighbor v of u
+
+8.         If v is not visited
+
+9.             Mark v as visited
+10.            Enqueue v into Q
+
+11. End While
