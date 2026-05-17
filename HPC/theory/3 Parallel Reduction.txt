@@ -1,0 +1,107 @@
+1. Objective
+
+To implement Min, Max, Sum, and Average operations using Parallel Reduction in OpenMP and improve computation performance using parallel processing.
+
+2. Theory
+Parallel Reduction
+Reduction is a technique used in parallel programming to combine multiple values into a single result.
+
+Common operations:
+Sum
+Minimum
+Maximum
+Average
+
+In sequential execution:
+One processor calculates values one by one.
+
+In parallel reduction:
+Multiple threads calculate partial results simultaneously.
+Final results are combined together.
+
+
+Operations Performed
+Operation	Meaning
+Min		Smallest element
+Max		Largest element
+Sum		Addition of all elements
+Average		Sum / Number of elements
+
+Example
+Array:
+2 4 6 8 10
+
+Results:
+Min = 2
+Max = 10
+Sum = 30
+Average = 6
+
+3. Algorithm
+Algorithm for Parallel Reduction
+Start
+Read array elements
+Initialize min, max, and sum variables
+Create parallel threads using OpenMP
+Perform:
+	Parallel sum reduction
+	Parallel min reduction
+	Parallel max reduction
+Calculate average using sum
+Display results
+Stop
+
+
+4. Pseudocode
+ParallelReduction(A, n)
+
+1. Initialize:
+       sum = 0
+       min = A[0]
+       max = A[0]
+
+2. Parallel for each element A[i]
+
+3.     sum = sum + A[i]
+
+4.     If A[i] < min
+           min = A[i]
+
+5.     If A[i] > max
+           max = A[i]
+
+6. average = sum / n
+
+7. Print min, max, sum, average
+
+
+6. Performance Measurement
+Performance can be measured using:
+Execution Time
+Speedup
+
+Formula for Speedup
+Speedup=Parallel Time/Sequential Time
+	​
+
+7. Advantages
+Faster computation
+Efficient for large datasets
+Better CPU utilization
+Simple OpenMP implementation
+
+8. Disadvantages
+Thread management overhead
+Synchronization cost
+Small datasets may not show improvement
+
+9. Applications
+Scientific Computing
+Data Analysis
+Machine Learning
+Statistical Calculations
+High Performance Computing (HPC)
+
+
+
+

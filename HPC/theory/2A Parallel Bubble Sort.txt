@@ -1,0 +1,109 @@
+1. Objective
+
+To implement Parallel Bubble Sort using OpenMP and compare the performance of sequential and parallel sorting algorithms.
+
+2. Theory
+Bubble Sort
+Bubble Sort is a simple sorting algorithm that repeatedly compares adjacent elements and swaps them if they are in the wrong order.
+
+Largest elements “bubble up” to the end after each pass.
+
+Example
+Array:
+5 3 1 4 2
+After sorting:
+1 2 3 4 5
+
+Sequential Bubble Sort
+In sequential bubble sort:
+Comparisons happen one by one.
+Only one processor/thread works at a time.
+
+Time complexity:
+O(n²)
+
+Parallel Bubble Sort
+In Parallel Bubble Sort:
+Multiple comparisons and swaps are done simultaneously.
+OpenMP creates multiple threads.
+Improves execution speed for large arrays.
+
+Usually implemented using:
+Odd-Even Transposition Sort technique
+
+3. Algorithm
+Sequential Bubble Sort Algorithm
+Start
+Compare adjacent elements
+Swap if elements are in wrong order
+Repeat for all elements
+Repeat passes until array becomes sorted
+Stop
+
+Parallel Bubble Sort Algorithm
+Start
+Divide array operations among threads
+Perform odd phase comparisons in parallel
+Perform even phase comparisons in parallel
+Repeat until array is sorted
+Stop
+
+
+
+4. Pseudocode
+Sequential Bubble Sort
+BubbleSort(A, n)
+
+1. For i = 0 to n-1
+
+2.     For j = 0 to n-i-2
+
+3.         If A[j] > A[j+1]
+
+4.             Swap A[j] and A[j+1]
+
+5. End
+
+
+Parallel Bubble Sort
+ParallelBubbleSort(A, n)
+
+1. For i = 0 to n-1
+
+2.     If i is even
+
+3.         Parallel for j = 0 to n-2 step 2
+
+4.             Compare and swap A[j], A[j+1]
+
+5.     Else
+
+6.         Parallel for j = 1 to n-2 step 2
+
+7.             Compare and swap A[j], A[j+1]
+
+8. End
+
+Formula for Speedup:
+Speedup= Parallel Time /Sequential Time
+	​
+
+
+
+6. Advantages
+Faster sorting for large data
+Better CPU utilization
+Reduces execution time
+Uses multiple cores
+
+7. Disadvantages
+Synchronization overhead
+Complex implementation
+Not efficient for very small arrays
+
+8. Applications
+Scientific Computing
+Data Processing
+Parallel Systems
+Performance Analysis
+High Performance Computing (HPC)

@@ -1,0 +1,104 @@
+1. Objective
+
+To implement Parallel Merge Sort using OpenMP and compare the performance of sequential and parallel merge sort algorithms.
+
+2. Theory
+Merge Sort
+Merge Sort is a Divide and Conquer sorting algorithm.
+
+It works in three steps:
+Divide the array into two halves
+Sort each half recursively
+Merge the sorted halves
+
+Example
+Array:
+8 3 5 1 9 6
+After sorting:
+1 3 5 6 8 9
+
+Sequential Merge Sort
+In sequential merge sort:
+Sorting happens using a single processor/thread.
+Recursive calls execute one after another.
+Time Complexity
+O(nlogn)
+
+Parallel Merge Sort
+In Parallel Merge Sort:
+Left and right halves are sorted simultaneously using multiple threads.
+OpenMP parallel sections are used.
+
+This reduces execution time for large datasets.
+
+
+3. Algorithm
+Sequential Merge Sort Algorithm
+
+Divide array into two halves
+Recursively sort left half
+Recursively sort right half
+Merge both sorted halves
+Repeat until array is sorted
+
+Parallel Merge Sort Algorithm
+
+Divide array into two halves
+Create parallel threads
+Sort left and right halves simultaneously
+Merge sorted halves
+Repeat recursively
+Stop when array becomes sorted
+
+4. Pseudocode
+Sequential Merge Sort
+MergeSort(A, low, high)
+
+1. If low < high
+
+2.     mid = (low + high) / 2
+
+3.     MergeSort(A, low, mid)
+
+4.     MergeSort(A, mid+1, high)
+
+5.     Merge(A, low, mid, high)
+
+6. End
+
+
+Parallel Merge Sort
+ParallelMergeSort(A, low, high)
+
+1. If low < high
+
+2.     mid = (low + high) / 2
+
+3.     Parallel Sections
+
+4.         ParallelMergeSort(A, low, mid)
+
+5.         ParallelMergeSort(A, mid+1, high)
+
+6.     Merge(A, low, mid, high)
+
+7. End
+
+
+Applications
+Large-scale data sorting
+Database systems
+Scientific Computing
+High Performance Computing (HPC)
+External Sorting
+
+
+6. Advantages
+Faster sorting for large datasets
+Efficient divide-and-conquer approach
+Better CPU utilization
+Suitable for multicore processors
+7. Disadvantages
+More memory usage
+Synchronization overhead
+Complex implementation
