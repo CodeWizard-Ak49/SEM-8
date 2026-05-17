@@ -1,0 +1,92 @@
+Python Program in Ubuntu :
+
+Step 1: Open Terminal
+	Ctrl + Alt + T
+
+Step 2: Check Python Installed
+	python3 --version
+If not installed:
+	sudo apt update
+	sudo apt install python3
+
+Step 3: Create Python File
+Move to Desktop:
+	cd Desktop 
+
+Create file:
+	nano hello.py
+
+Step 4: Write Code
+	Paste CODE
+
+Step 5: Save File (do it manually)
+	Press Ctrl + O
+	Press Enter
+	Press Ctrl + X
+
+Step 6: Run Python Program
+	python3 hello.py
+
+C++ Program in Ubuntu
+
+Step 1: Install G++
+	sudo apt update
+	sudo apt install g++
+
+Check:
+	g++ --version
+
+Step 2: Create C++ File
+	cd Desktop
+
+	nano hello.cpp
+
+Step 3: Write C++ Code
+	Paste CODE
+
+Step 4: Save (DO it manually)
+	Ctrl + O
+	Enter
+	Ctrl + X
+
+Step 5: Compile C++ Program
+	g++ hello.cpp -o hello
+
+Step 6: Run Program
+	./hello
+
+C Program in Ubuntu
+
+Step 1: Install GCC Compiler
+	sudo apt update
+	sudo apt install gcc
+
+Check version:
+	gcc --version
+
+Step 2: Create C File
+Go to Desktop:
+	cd Desktop
+
+Create file:
+	nano hello.c
+
+Step 3: Write C Code
+	paste code
+
+Step 4: Save File
+	Ctrl + O
+	Enter
+	Ctrl + X
+
+Step 5: Compile C Program
+	gcc hello.c -o hello
+
+Explanation:
+	gcc → compiler
+	hello.c → source file
+	-o hello → executable name
+
+Step 6: Run Program
+	./hello
+
