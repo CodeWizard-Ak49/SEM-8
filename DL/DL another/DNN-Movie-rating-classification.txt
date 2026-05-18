@@ -1,0 +1,132 @@
+import tensorflow as tf
+from tensorflow.keras.datasets import imdb
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Embedding, Flatten
+import matplotlib.pyplot as plt
+import numpy as np
+vocab_size = 10000
+
+(x_train, y_train), (x_test, y_test) = imdb.load_data(num_words=vocab_size)
+
+print("Training Samples:", len(x_train))
+print("Testing Samples:", len(x_test))
+print(x_train[0])
+print("Label:", y_train[0])
+word_index = imdb.get_word_index()
+
+reverse_word_index = {
+    value: key for key, value in word_index.items()
+}
+
+decoded_review = ' '.join(
+    [reverse_word_index.get(i - 3, '?') for i in x_train[0]]
+)
+
+print(decoded_review)
+max_length = 200
+
+x_train = pad_sequences(x_train,
+                        maxlen=max_length)
+
+x_test = pad_sequences(x_test,
+                       maxlen=max_length)
+
+print(x_train.shape)
+model = Sequential()
+
+# Embedding Layer
+model.add(Embedding(vocab_size,
+                    32,
+                    input_length=max_length))
+
+# Flatten
+model.add(Flatten())
+
+# Hidden Layers
+model.add(Dense(128,
+                activation='relu'))
+
+model.add(Dense(64,
+                activation='relu'))
+
+# Output Layer
+model.add(Dense(1,
+                activation='sigmoid'))
+model.summary()
+model.compile(optimizer='adam',
+              loss='binary_crossentropy',
+              metrics=['accuracy'])
+history = model.fit(
+    x_train,
+    y_train,
+    epochs=5,
+    batch_size=128,
+    validation_split=0.2
+)
+test_loss, test_acc = model.evaluate(x_test,
+                                     y_test)
+
+print("Test Accuracy:", test_acc)
+plt.plot(history.history['accuracy'],
+         label='Training Accuracy')
+
+plt.plot(history.history['val_accuracy'],
+         label='Validation Accuracy')
+
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.legend()
+
+plt.title('Model Accuracy')
+
+plt.show()
+plt.plot(history.history['loss'],
+         label='Training Loss')
+
+plt.plot(history.history['val_loss'],
+         label='Validation Loss')
+
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.legend()
+
+plt.title('Model Loss')
+
+plt.show()
+predictions = model.predict(x_test)
+
+print(predictions[0])
+for i in range(5):
+
+    prediction = predictions[i][0]
+
+    sentiment = "Positive 😊" if prediction > 0.5 else "Negative 😞"
+
+    actual = "Positive 😊" if y_test[i] == 1 else "Negative 😞"
+
+    print("Review", i+1)
+    print("Predicted:", sentiment)
+    print("Actual:", actual)
+    print("-" * 40)
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+y_pred = (predictions > 0.5).astype("int32")
+cm = confusion_matrix(y_test, y_pred)
+
+print(cm)
+plt.figure(figsize=(6,5))
+
+sns.heatmap(cm,
+            annot=True,
+            fmt='d',
+            cmap='Blues',
+            xticklabels=['Negative','Positive'],
+            yticklabels=['Negative','Positive'])
+
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+
+plt.title('Confusion Matrix')
+
+plt.show()
